@@ -3,6 +3,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.activiti.engine.runtime.Execution;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -24,6 +26,9 @@ public class MyUnitTest {
 		assertNotNull(activitiRule.getRuntimeService());
 		ProcessInstance processInstance = activitiRule.getRuntimeService().startProcessInstanceByKey("my-process");
 		assertNotNull(processInstance);
+		
+		//Logger.getLogger("org.activiti").setLevel(Level.ALL);
+		//Logger.getLogger("").getHandlers()[0].setLevel(Level.ALL);
 		
 		// Should be at the single User Task
 		Task task = activitiRule.getTaskService().createTaskQuery().singleResult();

@@ -1,1 +1,1702 @@
 This is a Maven project which can be used as template when creating a unit test for Activiti.
+
+
+== MySQL + Without tracing test ==
+
+jul 14, 2015 1:52:59 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [activiti.cfg.xml]
+jul 14, 2015 1:53:00 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: performing create on engine with resource org/activiti/db/create/activiti.mysql.create.engine.sql
+jul 14, 2015 1:53:00 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: Found MySQL: majorVersion=5 minorVersion=5
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: performing create on history with resource org/activiti/db/create/activiti.mysql.create.history.sql
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: Found MySQL: majorVersion=5 minorVersion=5
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: performing create on identity with resource org/activiti/db/create/activiti.mysql.create.identity.sql
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: Found MySQL: majorVersion=5 minorVersion=5
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.ProcessEngineImpl <init>
+INFO: ProcessEngine default created
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor start
+INFO: Starting up the default async job executor [org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor].
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor startExecutingAsyncJobs
+INFO: Creating thread pool queue of size 100
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor startExecutingAsyncJobs
+INFO: Creating executor service with corePoolSize 2, maxPoolSize 10 and keepAliveTime 5000
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.asyncexecutor.AcquireTimerJobsRunnable run
+INFO: {} starting to acquire async jobs due
+jul 14, 2015 1:53:01 PM org.activiti.engine.impl.asyncexecutor.AcquireAsyncJobsDueRunnable run
+INFO: {} starting to acquire async jobs due
+jul 14, 2015 1:53:02 PM org.activiti.engine.impl.bpmn.deployer.BpmnDeployer deploy
+INFO: Processing resource org/activiti/test/my-process.bpmn20.xml
+Current task: Task[id=12, name=Activiti is awesome!]
+MySleepClass start!
+MySleepClass done!
+jul 14, 2015 1:53:15 PM org.activiti.engine.impl.cmd.JobRetryCmd execute
+SEVERE: activitiy or FailedJobRetryTimerCycleValue is null in job 10'. only decrementing retries.
+Executions: [ProcessInstance[5], ConcurrentExecution[8], ConcurrentExecution[9]]
+
+===============
+
+JUNIT FAILED WITH java.lang.AssertionError: expected:<0> but was:<3>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:645)
+	at org.junit.Assert.assertEquals(Assert.java:631)
+	at org.activiti.MyUnitTest.testAsync(MyUnitTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.activiti.engine.test.ActivitiRule$1.evaluate(ActivitiRule.java:126)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+	
+== MYSQL + With tracing on == 
+
+jul 14, 2015 2:06:36 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [activiti.cfg.xml]
+jul 14, 2015 2:06:38 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: performing create on engine with resource org/activiti/db/create/activiti.mysql.create.engine.sql
+jul 14, 2015 2:06:38 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: Found MySQL: majorVersion=5 minorVersion=5
+jul 14, 2015 2:06:38 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: performing create on history with resource org/activiti/db/create/activiti.mysql.create.history.sql
+jul 14, 2015 2:06:38 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: Found MySQL: majorVersion=5 minorVersion=5
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: performing create on identity with resource org/activiti/db/create/activiti.mysql.create.identity.sql
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession executeSchemaResource
+INFO: Found MySQL: majorVersion=5 minorVersion=5
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.ProcessEngineImpl <init>
+INFO: ProcessEngine default created
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor start
+INFO: Starting up the default async job executor [org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor].
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor startExecutingAsyncJobs
+INFO: Creating thread pool queue of size 100
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor startExecutingAsyncJobs
+INFO: Creating executor service with corePoolSize 2, maxPoolSize 10 and keepAliveTime 5000
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.asyncexecutor.AcquireTimerJobsRunnable run
+INFO: {} starting to acquire async jobs due
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.asyncexecutor.AcquireAsyncJobsDueRunnable run
+INFO: {} starting to acquire async jobs due
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.bpmn.deployer.BpmnDeployer deploy
+INFO: Processing resource org/activiti/test/my-process.bpmn20.xml
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting TaskQueryImpl --------------------------------------------------------
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_RU_EXECUTION set LOCK_TIME_ = ? where ID_ = ? and (LOCK_TIME_ is null OR LOCK_TIME_ <= 
+?) 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@16a9b96]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2015-07-14 14:11:39.687(Timestamp), 5(String), 2015-07-14 14:06:39.687(Timestamp)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select distinct RES.* from ACT_RU_TASK RES order by RES.ID_ asc LIMIT ? OFFSET ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ConcurrentExecution[8]' was not updated
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 0 insert, 0 update, 0 delete.
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting ExecuteAsyncJobCmd --------------------------------------------------------
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cmd.ExecuteAsyncJobCmd execute
+FINE: Executing async job 10
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, EXECUTION_ID_, PROC_INST_ID_, PROC_DEF_ID_, NAME_, PARENT_TASK_ID_, DESCRIPTION_, TAS
+K_DEF_KEY_, OWNER_, ASSIGNEE_, DELEGATION_, PRIORITY_, CREATE_TIME_, DUE_DATE_, CATEGORY_, SUSPENSION_STATE_, TENANT_ID_
+, FORM_KEY_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 12, 1, 9, 5, my-process:1:4, Activiti is awesome!, null, null, someTask, null, null, null, 50, 2
+015-07-14 14:06:39.0, null, null, 1, , null
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'Task[id=12, name=Activiti is awesome!]' was not updated
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 0 insert, 0 update, 0 delete.
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 8, 1, 5, null, 5, my-process:1:4, null, servicetask1, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- TaskQueryImpl finished --------------------------------------------------------
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionCreateScope@1a55682 on org.activi
+ti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerStart@1b63266 on or
+g.activiti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerStart@1b63266 on or
+g.activiti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+Current task: Task[id=12, name=Activiti is awesome!]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationActivityExecute@127769a on org.activiti.eng
+ine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting CompleteTaskCmd --------------------------------------------------------
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.pvm.runtime.AtomicOperationActivityExecute execute
+FINE: ConcurrentExecution[8] executes Activity(servicetask1): org.activiti.engine.impl.bpmn.helper.ClassDelegate
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.util.ReflectUtil loadClass
+FINEST: Trying to load class with current thread context classloader: org.activiti.MySleepClass
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_TASK where ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+MySleepClass start!
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, EXECUTION_ID_, PROC_INST_ID_, PROC_DEF_ID_, NAME_, PARENT_TASK_ID_, DESCRIPTION_, TAS
+K_DEF_KEY_, OWNER_, ASSIGNEE_, DELEGATION_, PRIORITY_, CREATE_TIME_, DUE_DATE_, CATEGORY_, SUSPENSION_STATE_, TENANT_ID_
+, FORM_KEY_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 12, 1, 9, 5, my-process:1:4, Activiti is awesome!, null, null, someTask, null, null, null, 50, 2
+015-07-14 14:06:39.0, null, null, 1, , null
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_TASK where PARENT_TASK_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_IDENTITYLINK where TASK_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_VARIABLE where TASK_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: AUDIT
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_HI_TASKINST where ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, PROC_DEF_ID_, TASK_DEF_KEY_, PROC_INST_ID_, EXECUTION_ID_, NAME_, PARENT_TASK_ID_, DESCRIPT
+ION_, OWNER_, ASSIGNEE_, START_TIME_, CLAIM_TIME_, END_TIME_, DURATION_, DELETE_REASON_, PRIORITY_, DUE_DATE_, FORM_KEY_
+, CATEGORY_, TENANT_ID_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 12, my-process:1:4, someTask, 5, 9, Activiti is awesome!, null, null, null, null, 2015-07-14 14:
+06:39.0, null, null, null, null, 50, null, null, null, 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 9, 1, 5, null, 5, my-process:1:4, null, someTask, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select distinct T.* from ACT_RU_TASK T where T.EXECUTION_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, EXECUTION_ID_, PROC_INST_ID_, PROC_DEF_ID_, NAME_, PARENT_TASK_ID_, DESCRIPTION_, TAS
+K_DEF_KEY_, OWNER_, ASSIGNEE_, DELEGATION_, PRIORITY_, CREATE_TIME_, DUE_DATE_, CATEGORY_, SUSPENSION_STATE_, TENANT_ID_
+, FORM_KEY_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 12, 1, 9, 5, my-process:1:4, Activiti is awesome!, null, null, someTask, null, null, null, 50, 2
+015-07-14 14:06:39.0, null, null, 1, , null
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_JOB J where J.EXECUTION_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.bpmn.behavior.BpmnActivityBehavior performOutgoingBehavior
+FINE: Leaving activity 'someTask'
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerEnd@1f0c81 on org.a
+ctiviti.engine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_ACTINST RES WHERE RES.EXECUTION_ID_ = ? and RES.ACT_ID_ = ? and RES.END_T
+IME_ is null order by RES.ID_ asc LIMIT ? OFFSET ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String), someTask(String), 1(Integer), 0(Integer)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, CALL_PROC_INST_ID_, ACT_NAME
+_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_, TENANT_ID_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 11, my-process:1:4, 5, 9, someTask, 12, null, Activiti is awesome!, userTask, null, 2015-07-14 1
+4:06:39.0, null, null, 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerEnd@1f0c81 on org.a
+ctiviti.engine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionDestroyScope@c2ffff on org.activi
+ti.engine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerTake@34bebd on org.
+activiti.engine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerTake execute
+FINE: ConcurrentExecution[9] takes transition (someTask)--flow4-->(parallelgateway2)
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionCreateScope@1a55682 on org.activi
+ti.engine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerStart@1b63266 on or
+g.activiti.engine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerStart@1b63266 on or
+g.activiti.engine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationActivityExecute@127769a on org.activiti.eng
+ine.impl.interceptor.CommandContext@6dfec1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.pvm.runtime.AtomicOperationActivityExecute execute
+FINE: ConcurrentExecution[9] executes Activity(parallelgateway2): org.activiti.engine.impl.bpmn.behavior.ParallelGateway
+ActivityBehavior
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 5, 1, 5, null, null, my-process:1:4, null, parallelgateway1, 0, 0, 1, 0, 1, 0, , null, 2015-07-1
+4 14:11:39.0
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 8, 1, 5, null, 5, my-process:1:4, null, servicetask1, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 9, 1, 5, null, 5, my-process:1:4, null, someTask, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 2
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.persistence.entity.ExecutionEntity findInactiveConcurrentExecutions
+FINE: inactive concurrent executions in 'Activity(parallelgateway2)': [ConcurrentExecution[9]]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.persistence.entity.ExecutionEntity findInactiveConcurrentExecutions
+FINE: other concurrent executions: [ConcurrentExecution[8]]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.bpmn.behavior.ParallelGatewayActivityBehavior execute
+FINE: parallel gateway 'parallelgateway2' does not activate: 1 of 2 joined
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ConcurrentExecution[8]' was not updated
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 1 insert, 4 update, 1 delete.
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   insert HistoricActivityInstanceEntity[activityId=parallelgateway2, activityName=Exclusive Gateway]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   update HistoricActivityInstanceEntity[activityId=someTask, activityName=Activiti is awesome!]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   update ProcessInstance[5]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   update ConcurrentExecution[9]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   update org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntity@6be45d
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete Task[id=12, name=Activiti is awesome!]
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flushInserts
+FINE: inserting: HistoricActivityInstanceEntity[activityId=parallelgateway2, activityName=Exclusive Gateway]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, C
+ALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_, TENANT_ID_ ) values ( ?, ?, ?, ?,
+ ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 14(String), my-process:1:4(String), 5(String), 9(String), parallelgateway2(String), null, null, Ex
+clusive Gateway(String), parallelGateway(String), null, 2015-07-14 14:06:39.767(Timestamp), 2015-07-14 14:06:39.784(Time
+stamp), 17(Long), (String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flushUpdates
+FINE: updating: HistoricActivityInstanceEntity[activityId=someTask, activityName=Activiti is awesome!]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_HI_ACTINST set EXECUTION_ID_ = ?, ASSIGNEE_ = ?, END_TIME_ = ?, DURATION_ = ? where ID_
+ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String), null, 2015-07-14 14:06:39.765(Timestamp), 765(Long), 11(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flushUpdates
+FINE: updating: ProcessInstance[5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_RU_EXECUTION set REV_ = ?, BUSINESS_KEY_ = ?, PROC_DEF_ID_ = ?, ACT_ID_ = ?, IS_ACTIVE_
+ = ?, IS_CONCURRENT_ = ?, IS_SCOPE_ = ?, IS_EVENT_SCOPE_ = ?, PARENT_ID_ = ?, SUPER_EXEC_ = ?, SUSPENSION_STATE_ = ?, CA
+CHED_ENT_STATE_ = ?, NAME_ = ?, LOCK_TIME_ = ? where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2(Integer), null, my-process:1:4(String), parallelgateway1(String), false(Boolean), false(Boolean)
+, true(Boolean), false(Boolean), null, null, 1(Integer), 0(Integer), null, null, 5(String), 1(Integer)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flushUpdates
+FINE: updating: ConcurrentExecution[9]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_RU_EXECUTION set REV_ = ?, BUSINESS_KEY_ = ?, PROC_DEF_ID_ = ?, ACT_ID_ = ?, IS_ACTIVE_
+ = ?, IS_CONCURRENT_ = ?, IS_SCOPE_ = ?, IS_EVENT_SCOPE_ = ?, PARENT_ID_ = ?, SUPER_EXEC_ = ?, SUSPENSION_STATE_ = ?, CA
+CHED_ENT_STATE_ = ?, NAME_ = ?, LOCK_TIME_ = ? where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2(Integer), null, my-process:1:4(String), parallelgateway2(String), false(Boolean), true(Boolean),
+ false(Boolean), false(Boolean), 5(String), null, 1(Integer), 1(Integer), null, null, 9(String), 1(Integer)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flushUpdates
+FINE: updating: org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntity@6be45d
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_HI_TASKINST set EXECUTION_ID_ = ?, NAME_ = ?, PARENT_TASK_ID_ = ?, DESCRIPTION_ = ?, OW
+NER_ = ?, ASSIGNEE_ = ?, CLAIM_TIME_ = ?, END_TIME_ = ?, DURATION_ = ?, DELETE_REASON_ = ?, TASK_DEF_KEY_ = ?, FORM_KEY_
+ = ?, PRIORITY_ = ?, DUE_DATE_ = ?, CATEGORY_ = ? where ID_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String), Activiti is awesome!(String), null, null, null, null, null, 2015-07-14 14:06:39.748(Tim
+estamp), 748(Long), completed(String), someTask(String), null, 50(Integer), null, null, 12(String)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: delete Task[id=12, name=Activiti is awesome!]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RU_TASK where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String), 1(Integer)
+jul 14, 2015 2:06:39 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- CompleteTaskCmd finished --------------------------------------------------------
+jul 14, 2015 2:06:39 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.asyncexecutor.AcquireAsyncJobsDueRunnable run
+FINE: async job acquisition thread woke up
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.asyncexecutor.AcquireTimerJobsRunnable run
+FINE: timer job acquisition thread woke up
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting AcquireAsyncJobsDueCmd --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting AcquireTimerJobsCmd --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@16a9b96]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_RU_JOB RES LEFT OUTER JOIN ACT_RU_EXECUTION PI ON PI.ID_ = RES.PROCESS_INSTA
+NCE_ID_ where (RES.RETRIES_ > 0) and (RES.DUEDATE_ is null or RES.DUEDATE_ <= ?) and (RES.LOCK_OWNER_ is null or RES.LOC
+K_EXP_TIME_ <= ?) and TYPE_ = 'timer' and ( (RES.EXECUTION_ID_ is null) or (PI.SUSPENSION_STATE_ = 1) ) LIMIT ? OFFSET ?
+ 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_RU_JOB RES LEFT OUTER JOIN ACT_RU_EXECUTION PI ON PI.ID_ = RES.PROCESS_INSTA
+NCE_ID_ where RES.RETRIES_ > 0 and RES.DUEDATE_ is not null and RES.DUEDATE_ <= ? and (RES.LOCK_EXP_TIME_ is null or RES
+.LOCK_EXP_TIME_ <= ?) and TYPE_ = 'message' and ( (RES.EXECUTION_ID_ is null) or (PI.SUSPENSION_STATE_ = 1) ) LIMIT ? OF
+FSET ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2015-07-14 14:06:49.225(Timestamp), 2015-07-14 14:06:49.225(Timestamp), 1(Integer), 0(Integer)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2015-07-14 14:06:49.225(Timestamp), 2015-07-14 14:06:49.225(Timestamp), 1(Integer), 0(Integer)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 0 insert, 0 update, 0 delete.
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 0 insert, 0 update, 0 delete.
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- AcquireAsyncJobsDueCmd finished --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- AcquireTimerJobsCmd finished --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.asyncexecutor.AcquireAsyncJobsDueRunnable run
+FINE: async job acquisition thread sleeping for 10000 millis
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.asyncexecutor.AcquireTimerJobsRunnable run
+FINE: timer job acquisition thread sleeping for 10000 millis
+MySleepClass done!
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_JOB J where J.EXECUTION_ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, 
+PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, TENANT_ID_
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 10, 1, message, null, null, 1, 8, 5, my-process:1:4, 3, null, null, 2015-07-14 14:11:39.0, null,
+ async-continuation, null, 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.bpmn.behavior.BpmnActivityBehavior performOutgoingBehavior
+FINE: Leaving activity 'servicetask1'
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerEnd@1f0c81 on org.a
+ctiviti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerEnd@1f0c81 on org.a
+ctiviti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionDestroyScope@c2ffff on org.activi
+ti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerTake@34bebd on org.
+activiti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerTake execute
+FINE: ConcurrentExecution[8] takes transition (servicetask1)--flow7-->(parallelgateway2)
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionCreateScope@1a55682 on org.activi
+ti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerStart@1b63266 on or
+g.activiti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationTransitionNotifyListenerStart@1b63266 on or
+g.activiti.engine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationActivityExecute@127769a on org.activiti.eng
+ine.impl.interceptor.CommandContext@1d2b246
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.pvm.runtime.AtomicOperationActivityExecute execute
+FINE: ConcurrentExecution[8] executes Activity(parallelgateway2): org.activiti.engine.impl.bpmn.behavior.ParallelGateway
+ActivityBehavior
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 5, 1, 5, null, null, my-process:1:4, null, parallelgateway1, 0, 0, 1, 0, 1, 0, , null, 2015-07-1
+4 14:11:39.0
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 8, 1, 5, null, 5, my-process:1:4, null, servicetask1, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 9, 1, 5, null, 5, my-process:1:4, null, someTask, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 2
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.persistence.entity.ExecutionEntity findInactiveConcurrentExecutions
+FINE: inactive concurrent executions in 'Activity(parallelgateway2)': [ConcurrentExecution[8]]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.persistence.entity.ExecutionEntity findInactiveConcurrentExecutions
+FINE: other concurrent executions: [ConcurrentExecution[9]]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.bpmn.behavior.ParallelGatewayActivityBehavior execute
+FINE: parallel gateway 'parallelgateway2' does not activate: 1 of 2 joined
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ConcurrentExecution[9]' was not updated
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 2 insert, 2 update, 1 delete.
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   insert HistoricActivityInstanceEntity[activityId=servicetask1, activityName=Service Task]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   insert HistoricActivityInstanceEntity[activityId=parallelgateway2, activityName=Exclusive Gateway]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   update ProcessInstance[5]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   update ConcurrentExecution[8]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete JobEntity [id=10]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flushInserts
+FINE: inserting: HistoricActivityInstanceEntity[activityId=servicetask1, activityName=Service Task]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, C
+ALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_, TENANT_ID_ ) values ( ?, ?, ?, ?,
+ ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 13(String), my-process:1:4(String), 5(String), 8(String), servicetask1(String), null, null, Servic
+e Task(String), serviceTask(String), null, 2015-07-14 14:06:39.728(Timestamp), 2015-07-14 14:06:49.74(Timestamp), 10012(
+Long), (String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flushInserts
+FINE: inserting: HistoricActivityInstanceEntity[activityId=parallelgateway2, activityName=Exclusive Gateway]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, C
+ALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_, TENANT_ID_ ) values ( ?, ?, ?, ?,
+ ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 15(String), my-process:1:4(String), 5(String), 8(String), parallelgateway2(String), null, null, Ex
+clusive Gateway(String), parallelGateway(String), null, 2015-07-14 14:06:49.744(Timestamp), 2015-07-14 14:06:49.769(Time
+stamp), 25(Long), (String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flushUpdates
+FINE: updating: ProcessInstance[5]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_RU_EXECUTION set REV_ = ?, BUSINESS_KEY_ = ?, PROC_DEF_ID_ = ?, ACT_ID_ = ?, IS_ACTIVE_
+ = ?, IS_CONCURRENT_ = ?, IS_SCOPE_ = ?, IS_EVENT_SCOPE_ = ?, PARENT_ID_ = ?, SUPER_EXEC_ = ?, SUSPENSION_STATE_ = ?, CA
+CHED_ENT_STATE_ = ?, NAME_ = ?, LOCK_TIME_ = ? where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2(Integer), null, my-process:1:4(String), parallelgateway1(String), false(Boolean), false(Boolean)
+, true(Boolean), false(Boolean), null, null, 1(Integer), 0(Integer), null, null, 5(String), 1(Integer)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.CommandContext close
+FINE: Optimistic locking exception : org.activiti.engine.ActivitiOptimisticLockingException: ProcessInstance[5] was upda
+ted by another transaction concurrently
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext rollback
+FINE: firing event rolling back...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext rollback
+FINE: rolling back ibatis sql session...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext rollback
+FINE: firing event rolled back...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- ExecuteAsyncJobCmd finished --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting  --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.asyncexecutor.ExecuteAsyncRunnable$1 execute
+FINEST: Using FailedJobCommandFactory 'class org.activiti.engine.impl.jobexecutor.DefaultFailedJobCommandFactory' and co
+mmand of type 'class org.activiti.engine.impl.cmd.JobRetryCmd'
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting JobRetryCmd --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_JOB where ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 10(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, 
+PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, TENANT_ID_
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 10, 1, message, null, null, 1, 8, 5, my-process:1:4, 3, null, null, 2015-07-14 14:11:39.0, null,
+ async-continuation, null, 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 8, 1, 5, null, 5, my-process:1:4, null, servicetask1, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cmd.JobRetryCmd execute
+SEVERE: activitiy or FailedJobRetryTimerCycleValue is null in job 10'. only decrementing retries.
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ConcurrentExecution[8]' was not updated
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 1 insert, 1 update, 0 delete.
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   insert ByteArrayEntity[id=16, name=stacktrace, size=1159]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   update JobEntity [id=10]
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flushInserts
+FINE: inserting: ByteArrayEntity[id=16, name=stacktrace, size=1159]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_) values ( ?, 1, ?, ?, ? ) 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 16(String), stacktrace(String), java.io.ByteArrayInputStream@1c986df(ByteArrayInputStream), null
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flushUpdates
+FINE: updating: JobEntity [id=10]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_RU_JOB SET REV_ = ?, LOCK_EXP_TIME_ = ?, LOCK_OWNER_ = ?, RETRIES_ = ?, EXCEPTION_STACK
+_ID_ = ?, EXCEPTION_MSG_ = ?, DUEDATE_ = ? where ID_= ? and REV_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 2(Integer), null, null, 2(Integer), 16(String), ProcessInstance[5] was updated by another transact
+ion concurrently(String), 2015-07-14 14:06:59.797(Timestamp), 10(String), 1(Integer)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- JobRetryCmd finished --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: ---  finished --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.asyncexecutor.ExecuteAsyncRunnable run
+FINE: Optimistic locking exception during job execution. If you have multiple async executors running against the same d
+atabase, this exception means that this thread tried to acquire an exclusive job, which already was changed by another a
+sync executor thread.This is expected behavior in a clustered environment. You can ignore this message if you indeed hav
+e multiple job executor threads running against the same database. Exception message: ProcessInstance[5] was updated by 
+another transaction concurrently
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting UnlockExclusiveJobCmd --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cmd.UnlockExclusiveJobCmd execute
+FINE: Unlocking exclusive job 10
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@16a9b96]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 8, 1, 5, null, 5, my-process:1:4, null, servicetask1, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@16a9b96]
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: update ACT_RU_EXECUTION set LOCK_TIME_ = null where ID_ = ? 
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:49 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ConcurrentExecution[8]' was not updated
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 0 insert, 0 update, 0 delete.
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- UnlockExclusiveJobCmd finished --------------------------------------------------------
+jul 14, 2015 2:06:49 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting ExecutionQueryImpl --------------------------------------------------------
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@178ed09]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select distinct RES.* , P.KEY_ as ProcessDefinitionKey, P.ID_ as ProcessDefinitionId from ACT_RU_E
+XECUTION RES inner join ACT_RE_PROCDEF P on RES.PROC_DEF_ID_ = P.ID_ WHERE RES.PROC_INST_ID_ = ? order by RES.ID_ asc LI
+MIT ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_, Pr
+ocessDefinitionKey, ProcessDefinitionId
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 5, 2, 5, null, null, my-process:1:4, null, parallelgateway1, 0, 0, 1, 0, 1, 0, , null, null, my-
+process, my-process:1:4
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 8, 1, 5, null, 5, my-process:1:4, null, servicetask1, 1, 1, 0, 0, 1, 7, , null, null, my-process
+, my-process:1:4
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 9, 2, 5, null, 5, my-process:1:4, null, parallelgateway2, 0, 1, 0, 0, 1, 1, , null, null, my-pro
+cess, my-process:1:4
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 3
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ProcessInstance[5]' was not updated
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ConcurrentExecution[9]' was not updated
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ConcurrentExecution[8]' was not updated
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 0 insert, 0 update, 0 delete.
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- ExecutionQueryImpl finished --------------------------------------------------------
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+Executions: [ProcessInstance[5], ConcurrentExecution[8], ConcurrentExecution[9]]
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.test.TestHelper annotationDeploymentTearDown
+FINE: annotation @Deployment deletes deployment for MyUnitTest.testAsync
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- starting DeleteDeploymentCmd --------------------------------------------------------
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RE_DEPLOYMENT where ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 1(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, NAME_, CATEGORY_, TENANT_ID_, DEPLOY_TIME_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 1, MyUnitTest.testAsync, null, , 2015-07-14 14:06:39.0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select distinct RES.* from ACT_RE_PROCDEF RES WHERE RES.DEPLOYMENT_ID_ = ? order by RES.ID_ asc LI
+MIT ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 1(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, CATEGORY_, NAME_, KEY_, VERSION_, DEPLOYMENT_ID_, RESOURCE_NAME_, DGRM_RESOURCE_NAME_
+, DESCRIPTION_, HAS_START_FORM_KEY_, HAS_GRAPHICAL_NOTATION_, SUSPENSION_STATE_, TENANT_ID_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: my-process:1:4, 1, http://www.activiti.org/test, null, my-process, 1, 1, org/activiti/test/my-pr
+ocess.bpmn20.xml, org/activiti/test/my-process.my-process.png, null, 0, 1, 1, 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select distinct RES.* from ACT_RE_MODEL RES WHERE RES.DEPLOYMENT_ID_ = ? order by RES.ID_ asc LIMI
+T ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 1(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select ID_ from ACT_RU_EXECUTION where PROC_DEF_ID_ = ? and PARENT_ID_ is null 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: my-process:1:4(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 5
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 5, 2, 5, null, null, my-process:1:4, null, parallelgateway1, 0, 0, 1, 0, 1, 0, , null, null
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, PROC_INST_ID_, BUSINESS_KEY_, PARENT_ID_, PROC_DEF_ID_, SUPER_EXEC_, ACT_ID_, IS_ACTI
+VE_, IS_CONCURRENT_, IS_SCOPE_, IS_EVENT_SCOPE_, SUSPENSION_STATE_, CACHED_ENT_STATE_, TENANT_ID_, NAME_, LOCK_TIME_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 8, 1, 5, null, 5, my-process:1:4, null, servicetask1, 1, 1, 0, 0, 1, 7, , null, null
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 9, 2, 5, null, 5, my-process:1:4, null, parallelgateway2, 0, 1, 0, 0, 1, 1, , null, null
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 2
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where SUPER_EXEC_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where SUPER_EXEC_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select distinct RES.* from ACT_RU_TASK RES WHERE RES.PROC_INST_ID_ = ? order by RES.ID_ asc LIMIT 
+? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascade@d795d2 on org.activiti.engine
+.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_ACTINST RES WHERE RES.EXECUTION_ID_ = ? and RES.ACT_ID_ = ? and RES.END_T
+IME_ is null order by RES.ID_ asc LIMIT ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String), servicetask1(String), 1(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_ACTINST RES WHERE RES.EXECUTION_ID_ = ? and RES.ACT_ID_ = ? and RES.END_T
+IME_ is null order by RES.ID_ asc LIMIT ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String), parallelgateway1(String), 1(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_VARIABLE where EXECUTION_ID_ = ? and TASK_ID_ is null 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select distinct T.* from ACT_RU_TASK T where T.EXECUTION_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_JOB J where J.EXECUTION_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, 
+PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, TENANT_ID_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 10, 2, message, null, null, 1, 8, 5, my-process:1:4, 2, 16, ProcessInstance[5] was updated by an
+other transaction concurrently, 2015-07-14 14:06:59.0, null, async-continuation, null, 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EVENT_SUBSCR where (EXECUTION_ID_ = ?) 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_IDENTITYLINK where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascade@d795d2 on org.activiti.engine
+.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where PARENT_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_ACTINST RES WHERE RES.EXECUTION_ID_ = ? and RES.ACT_ID_ = ? and RES.END_T
+IME_ is null order by RES.ID_ asc LIMIT ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String), parallelgateway2(String), 1(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_VARIABLE where EXECUTION_ID_ = ? and TASK_ID_ is null 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EVENT_SUBSCR where (EXECUTION_ID_ = ?) 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_IDENTITYLINK where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascade@d795d2 on org.activiti.engine
+.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EXECUTION where SUPER_EXEC_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_HI_PROCINST where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, PROC_INST_ID_, BUSINESS_KEY_, PROC_DEF_ID_, START_TIME_, END_TIME_, DURATION_, START_USER_I
+D_, START_ACT_ID_, END_ACT_ID_, SUPER_PROCESS_INSTANCE_ID_, DELETE_REASON_, TENANT_ID_, NAME_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 5, 5, null, my-process:1:4, 2015-07-14 14:06:39.0, null, null, null, start, null, null, null, , 
+null
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.CommandContext performOperation
+FINEST: AtomicOperation: org.activiti.engine.impl.pvm.runtime.AtomicOperationDeleteCascadeFireActivityEnd@106b1db on org
+.activiti.engine.impl.interceptor.CommandContext@1ad3046
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.persistence.entity.ExecutionEntity destroy
+FINE: destroying ProcessInstance[5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_VARIABLE where EXECUTION_ID_ = ? and TASK_ID_ is null 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_IDENTITYLINK where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: AUDIT
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_DETAIL RES WHERE RES.PROC_INST_ID_ = ? order by RES.ID_ asc LIMIT ? OFFSE
+T ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_VARINST RES WHERE RES.PROC_INST_ID_ = ? order by RES.ID_ asc LIMIT ? OFFS
+ET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: AUDIT
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select ID_ from ACT_HI_TASKINST where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 12
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_HI_TASKINST where ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_, PROC_DEF_ID_, TASK_DEF_KEY_, PROC_INST_ID_, EXECUTION_ID_, NAME_, PARENT_TASK_ID_, DESCRIPT
+ION_, OWNER_, ASSIGNEE_, START_TIME_, CLAIM_TIME_, END_TIME_, DURATION_, DELETE_REASON_, PRIORITY_, DUE_DATE_, FORM_KEY_
+, CATEGORY_, TENANT_ID_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 12, my-process:1:4, someTask, 5, 9, Activiti is awesome!, null, null, null, null, 2015-07-14 14:
+06:39.0, null, 2015-07-14 14:06:39.0, 748, completed, 50, null, null, null, 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: FULL
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_VARINST RES WHERE RES.TASK_ID_ = ? order by RES.ID_ asc LIMIT ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_HI_ATTACHMENT where TASK_ID_ = ? order by TIME_ desc 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_HI_IDENTITYLINK where TASK_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_HI_IDENTITYLINK where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select RES.* from ACT_HI_PROCINST RES WHERE RES.SUPER_PROCESS_INSTANCE_ID_ = ? order by RES.ID_ as
+c LIMIT ? OFFSET ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String), 2147483647(Integer), 0(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select ID_ from ACT_HI_PROCINST where PROC_DEF_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: my-process:1:4(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==    Columns: ID_
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger trace
+FINEST: <==        Row: 5
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: FULL
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryLevelAtLeast
+FINE: Current history level: AUDIT, level required: ACTIVITY
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession delete
+FINE: skipping redundant delete: org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntity@1b594d
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.history.DefaultHistoryManager isHistoryEnabled
+FINE: Current history level: AUDIT
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession delete
+FINE: skipping redundant delete: HistoricProcessInstanceEntity[superProcessInstanceId=null]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_JOB where HANDLER_TYPE_ = ? and HANDLER_CFG_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: timer-start-event(String), my-process(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: select * from ACT_RU_EVENT_SUBSCR where (EVENT_TYPE_ = ?) and ( (CONFIGURATION_ = ?) or (PROC_DEF_
+ID_ = ?) ) and (TENANT_ID_ = '' or TENANT_ID_ is null) 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: message(String), my-process:1:4(String), my-process:1:4(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==      Total: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'DeploymentEntity[id=1, name=MyUnitTest.testAsync]' was not updated
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession getUpdatedObjects
+FINEST: loaded object 'ProcessDefinitionEntity[my-process:1:4]' was not updated
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: flush summary: 0 insert, 0 update, 18 delete.
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete JobEntity [id=10]
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteByteArrayNoRevisionCheck(16)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete ConcurrentExecution[8]
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete ConcurrentExecution[9]
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete ProcessInstance[5]
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteHistoricActivityInstancesByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteCommentsByTaskId(12)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntity@1b594d
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteCommentsByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   delete HistoricProcessInstanceEntity[superProcessInstanceId=null]
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteHistoricActivityInstancesByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteCommentsByTaskId(12)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteCommentsByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteIdentityLinkByProcDef(my-process:1:4)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteEventSubscriptionsForProcessDefinition(my-process:1:4)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteProcessDefinitionsByDeploymentId(1)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteResourcesByDeploymentId(1)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE:   bulk delete: deleteDeployment(1)
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flush
+FINE: now executing flush...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: delete JobEntity [id=10]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RU_JOB where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 10(String), 2(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteByteArrayNoRevisionCheck(16)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_GE_BYTEARRAY where ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 16(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: delete ConcurrentExecution[8]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RU_EXECUTION where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 8(String), 1(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: delete ConcurrentExecution[9]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RU_EXECUTION where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 9(String), 2(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: delete ProcessInstance[5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RU_EXECUTION where ID_ = ? and REV_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String), 2(Integer)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteHistoricActivityInstancesByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_ACTINST where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 4
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteCommentsByTaskId(12)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_COMMENT where TASK_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: delete org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntity@1b594d
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_TASKINST where ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteCommentsByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_COMMENT where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: delete HistoricProcessInstanceEntity[superProcessInstanceId=null]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_PROCINST where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteHistoricActivityInstancesByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_ACTINST where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteCommentsByTaskId(12)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_COMMENT where TASK_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 12(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteCommentsByProcessInstanceId(5)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_HI_COMMENT where PROC_INST_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 5(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteIdentityLinkByProcDef(my-process:1:4)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RU_IDENTITYLINK where PROC_DEF_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: my-process:1:4(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteEventSubscriptionsForProcessDefinition(my-process:1:4)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RU_EVENT_SUBSCR where PROC_DEF_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: my-process:1:4(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 0
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteProcessDefinitionsByDeploymentId(1)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RE_PROCDEF where DEPLOYMENT_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 1(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteResourcesByDeploymentId(1)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_GE_BYTEARRAY where DEPLOYMENT_ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 1(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 2
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.db.DbSqlSession flushRegularDeletes
+FINE: executing: bulk delete: deleteDeployment(1)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ooo Using Connection [com.mysql.jdbc.JDBC4Connection@767ae5]
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==>  Preparing: delete from ACT_RE_DEPLOYMENT where ID_ = ? 
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: ==> Parameters: 1(String)
+jul 14, 2015 2:06:54 PM org.apache.ibatis.logging.jdbc.BaseJdbcLogger debug
+FINE: <==    Updates: 1
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committing...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: committing the ibatis sql session...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext commit
+FINE: firing event committed...
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: --- DeleteDeploymentCmd finished --------------------------------------------------------
+jul 14, 2015 2:06:54 PM org.activiti.engine.impl.interceptor.LogInterceptor execute
+FINE: 
+
+===============
+
+JUNIT FAILED WITH java.lang.AssertionError: expected:<0> but was:<3>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:645)
+	at org.junit.Assert.assertEquals(Assert.java:631)
+	at org.activiti.MyUnitTest.testAsync(MyUnitTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.activiti.engine.test.ActivitiRule$1.evaluate(ActivitiRule.java:126)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+
+== h2 without tracing ==
+	
+MySleepClass start!
+Current task: Task[id=12, name=Activiti is awesome!]
+MySleepClass done!
+Executions: []
+
+=====
+
+JUNIT Success
